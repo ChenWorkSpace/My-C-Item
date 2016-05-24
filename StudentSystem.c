@@ -8,7 +8,23 @@ static char *liss[3]={name,sex,stum};//senu 序号 stum 学号
 static float *liss2[3]={&value1,&value2,&value3};
 static char *info[7]={"序号：","姓名：","性别：","学号：","高数：","C程序设计：","数据结构："};
 
+/*支持的功能： 1.Member add/del 成员录入（删除）
+               2.List(数据列表)
+               3.求平均值(个人/科目)，最高分 Mean（Person/Subject）/Highest
+               4.筛选（性别，高于指定人平均分）Screen(Sex/SuperMean)
+               5.排序（平均成绩）MeanValue
+               6.查找（个人平均分/科目）FindPerson/Subject
+               7.信息录入类型（序号/学号/性别/成绩1/成绩2/成绩3/成绩4）
+               8.功能（建立文件/增加学生记录/新建学生信息文件/删除（修改）学生记录）
 
+实现思路：使用文件+双链表作为存储结构，以“学号+A”作为成员文件存储名称，
+并在list.txt文件中存储成员文件名列表，方便对成员文件进行遍历。
+当用户添加成员时：在内存中增加一个链表节点，并在磁盘中新建文本文件存储信息，
+在list.txt用户名列表中增加该用户名
+当用户删除成员时，在内存中释放该成员所属节点，并在磁盘中删除该成员文本文档，
+在list.txt文件中删除该用户名
+
+*/
 typedef struct  Data
 {
     int Senu;
