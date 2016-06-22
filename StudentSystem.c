@@ -8,7 +8,8 @@ static char *liss[3]={name,sex,stum};//senu 序号 stum 学号
 static float *liss2[3]={&value1,&value2,&value3};
 static char *info[7]={"序号：","姓名：","性别：","学号：","高数：","C程序设计：","数据结构："};
 
-/*支持的功能： 1.Member add/del 成员录入（删除）
+/*
+支持的功能： 1.Member add/del 成员录入（删除）
                2.List(数据列表)
                3.求平均值(个人/科目)，最高分 Mean（Person/Subject）/Highest
                4.筛选（性别，高于指定人平均分）Screen(Sex/SuperMean)
@@ -23,7 +24,6 @@ static char *info[7]={"序号：","姓名：","性别：","学号：","高数：","C程序设计："
 在list.txt用户名列表中增加该用户名
 当用户删除成员时，在内存中释放该成员所属节点，并在磁盘中删除该成员文本文档，
 在list.txt文件中删除该用户名
-
 */
 typedef struct  Data
 {
@@ -394,7 +394,7 @@ void DelNumber(int number)
             return 0;
         }
         p=p->next;
-        printf("senu:%d  array senu:%d\n",p->Senu,File.array->Senu);
+        //printf("senu:%d  array senu:%d\n",p->Senu,File.array->Senu);
         //printf("%d  %d\n",p->Senu,senu);
         if(senu==File.sum&&p->Senu==senu)
         {
@@ -520,13 +520,13 @@ void List()
                 }
                 else if(su=='C'||su=='c')
                 {
-                     system("cls");
+                    system("cls");
                     GetMaxValueList(2);
                     EndDisplay();
                 }
                 else if(su=='D'||su=='d')
                 {
-                     system("cls");
+                    system("cls");
                     GetMaxValueList(3);
                     EndDisplay();
                 }
@@ -685,6 +685,7 @@ void GetMaxValueList(int sort)
        }
        if(sort==1)
        {
+
         Mean[Target]=d->Valu1;
        //printf("%s\n",d->name);
        //printf("Mean=%2.1f\n",Mean[Target]);
@@ -701,11 +702,11 @@ void GetMaxValueList(int sort)
        Numberlist[Target]=d->Senu;
        Target++;
        d=d->next;
-       GetMeanvalueList(Mean,Numberlist,sort);
-       free(Numberlist);
+    }
+    GetMeanvalueList(Mean,Numberlist,sort);
+    free(Numberlist);
        free(Mean);
        return 0;
-    }
 };
 void GetNameDataandMean()
 {
@@ -716,6 +717,7 @@ void GetNameDataandMean()
     int *Numberlist=malloc(size*sizeof(int));
     Data *d;
     d=File.head;
+    //创建一个存放平均分的数组，以便于进行对应的排序方式
     while(Target<File.sum)
     {
        if(Target>=size)
